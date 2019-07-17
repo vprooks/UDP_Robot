@@ -9,18 +9,6 @@
 #include <thread>
 #include <utility>
 
-// The code is based on Boost ASIO tutorials
-// https://www.boost.org/doc/libs/1_58_0/doc/html/boost_asio/tutorial.html
-
-// The server should send messages continuously, and also receive messages
-// continuously and asynchronously. The receiving messages should work with a
-// timeout, i.e. it should cancel pending read operations when there is a
-// timeout. The client should work similary: send messages continuously, and
-// receive messages continuously and asynchronously.
-
-// TODO: check if it is possible to send binary messages. I really wat to reduce
-// the bandwidth requirement
-
 using namespace boost::program_options;
 using boost::asio::ip::udp;
 using namespace std;
@@ -337,8 +325,7 @@ int main(int argc, const char *argv[]) {
   signal(SIGINT, int_handler);
 
   try {
-    // TODO:
-    // Parse command line options. See
+    // Parse command line options.
     options_description desc{"Options"};
     desc.add_options()("help,h", "Help screen")(
         "host", value<string>()->default_value(""),
@@ -406,3 +393,4 @@ int main(int argc, const char *argv[]) {
 
   return 0;
 }
+
